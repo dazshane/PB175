@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-function Tests() {
+function Tests({store}:any) {
     return (
-        <nav id="sidebarMenu" className="sidebar">
-            <div className="logo">
-                <a><b>CREMS</b></a>
+        <div>
+            {console.log(store.getState())}
+            <div className="add-entry-form">
+                {store.getState().entries.map((s:any) => 
+                <div className="tests-output">
+                    <p>{s.userID}</p>
+                    <p>{s.date}</p>
+                    <p>{s.result}</p>
+                </div>
+                )}
             </div>
-            <div className="sidebar-flex">
-                <div className="link-wrap">Add Entry</div>
-                <div className="link-wrap">Tests</div>
-                <div className="link-wrap">My Tests</div>
-                <div className="link-wrap">Statistics</div>
-            </div>
-        </nav>
+        </div>
     )
 }
 

@@ -1,7 +1,30 @@
+import { configureStore } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import '../App.css';
+import { todosReducer } from '../reducers/localReducer';
 
-function Addentry( SaveEntry:any ) {
+function AddEntry({store}:any) {
+
+    const Entry = {
+        userID: "123456789",
+        name: "Marek",
+        date: "",
+        results: ""
+    }
+    
+    const [entry, setEntry] = useState({userID: "", name: "", date: "", result: ""})
+    
+    const SaveEntry = (entryDetails:any) => {
+        console.log(entryDetails);
+        console.log("Saved");
+        setEntry({
+            userID: entryDetails.userID,
+            name: entryDetails.name,
+            date: entryDetails.date,
+            result: entryDetails.result
+        })
+        store.dispatch({type: 'ADD_ENTRY', payload: entryDetails})
+    }
 
     const [entryDetails, setEntryDetails] = useState({userID: "", name: "", date: "", result: ""});
 
@@ -14,18 +37,7 @@ function Addentry( SaveEntry:any ) {
 
     return (
         <div>
-            <nav id="sidebarMenu" className="sidebar">
-                <div className="logo">
-                    <a><b>CREMS</b></a>
-                </div>
-                <div className="sidebar-flex">
-                    <div className="link-wrap">Add Entry</div>
-                    <div className="link-wrap">Tests</div>
-                    <div className="link-wrap">My Tests</div>
-                    <div className="link-wrap">Statistics</div>
-                </div>
-            </nav>
-
+            {console.log(store.getState())}
             <div className="add-entry-form">
                 <form onSubmit={submitHandler}>
                     <div className="form-inner">
@@ -51,4 +63,4 @@ function Addentry( SaveEntry:any ) {
     )
 }
 
-export default Addentry;
+export default AddEntry;

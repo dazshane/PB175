@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-function LoginForm({ Login, error } : any) {
+function LoginForm() {
 
+    const User = {
+        userID: "123456789",
+        password: "password"
+    }
+
+    const [user, setUser] = useState({userID: "", password: ""});
+    const [error, setError] = useState("");
     const [details, setDetails] = useState({userID: "", password: ""});
 
     const submitHandler = (e:any) => {
-
         e.preventDefault();
-
-        Login(details);
     }
 
     return (
